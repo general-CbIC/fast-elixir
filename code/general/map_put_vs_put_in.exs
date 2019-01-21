@@ -27,7 +27,7 @@ end
 
 defmodule MapPut.Benchmark do
   @inputs %{
-    "Large (30,000 items)" => 1..10_000,
+    "Large (30,000 items)" => 1..30_000,
     "Medium (3,000 items)" => 1..1_000,
     "Small (30 items)" => 1..10
   }

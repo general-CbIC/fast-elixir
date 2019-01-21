@@ -174,10 +174,10 @@ Do not put data into root of map with `put_in`. It is ~2x slower than `Map.put`.
 
 ```
 Operating System: macOS"
-CPU Information: Intel(R) Core(TM) i7-3520M CPU @ 2.90GHz
+CPU Information: Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz
 Number of Available Cores: 4
 Available memory: 8 GB
-Elixir 1.7.4
+Elixir 1.8.0
 Erlang 21.2.2
 
 Benchmark suite executing with the following configuration:
@@ -201,36 +201,36 @@ Benchmarking put_in/3 with input Small (30 items)...
 
 ##### With input Large (30,000 items) #####
 Name                ips        average  deviation         median         99th %
-Map.put/3        265.12        3.77 ms    ±47.11%        3.33 ms       11.35 ms
-put_in/2         186.31        5.37 ms    ±21.17%        5.15 ms        8.67 ms
-put_in/3         158.40        6.31 ms    ±34.23%        5.84 ms       14.71 ms
+Map.put/3         94.25       10.61 ms    ±10.58%       10.24 ms       13.39 ms
+put_in/2          79.07       12.65 ms    ±10.20%       12.39 ms       15.77 ms
+put_in/3          74.37       13.45 ms    ±12.05%       12.97 ms       19.24 ms
 
 Comparison:
-Map.put/3        265.12
-put_in/2         186.31 - 1.42x slower
-put_in/3         158.40 - 1.67x slower
+Map.put/3         94.25
+put_in/2          79.07 - 1.19x slower
+put_in/3          74.37 - 1.27x slower
 
 ##### With input Medium (3,000 items) #####
 Name                ips        average  deviation         median         99th %
-Map.put/3        5.68 K      175.93 μs   ±143.04%         151 μs         476 μs
-put_in/2         2.73 K      366.60 μs    ±34.11%         334 μs         829 μs
-put_in/3         2.44 K      409.76 μs    ±30.36%         372 μs      854.51 μs
+Map.put/3        5.08 K      196.76 μs    ±35.91%         166 μs         362 μs
+put_in/2         4.00 K      249.74 μs    ±17.27%         241 μs         413 μs
+put_in/3         3.68 K      272.07 μs    ±16.82%         262 μs      442.06 μs
 
 Comparison:
-Map.put/3        5.68 K
-put_in/2         2.73 K - 2.08x slower
-put_in/3         2.44 K - 2.33x slower
+Map.put/3        5.08 K
+put_in/2         4.00 K - 1.27x slower
+put_in/3         3.68 K - 1.38x slower
 
 ##### With input Small (30 items) #####
 Name                ips        average  deviation         median         99th %
-Map.put/3      677.44 K        1.48 μs  ±2879.99%           1 μs           3 μs
-put_in/2       362.48 K        2.76 μs  ±1833.30%           2 μs           5 μs
-put_in/3       337.47 K        2.96 μs  ±1141.45%           3 μs           5 μs
+Map.put/3     1400.26 K        0.71 μs   ±549.70%        0.60 μs        1.40 μs
+put_in/2       517.29 K        1.93 μs  ±2040.32%           2 μs           3 μs
+put_in/3       437.94 K        2.28 μs  ±1835.51%           2 μs           3 μs
 
 Comparison:
-Map.put/3      677.44 K
-put_in/2       362.48 K - 1.87x slower
-put_in/3       337.47 K - 2.01x slower
+Map.put/3     1400.26 K
+put_in/2       517.29 K - 2.71x slower
+put_in/3       437.94 K - 3.20x slower
 ```
 
 #### Splitting Large Strings [code](code/general/string_split_large_strings.exs)
