@@ -20,6 +20,7 @@ Help us collect benchmarks! Please [read the contributing guide](CONTRIBUTING.md
 - [IO Lists vs. String Concatenation](#io-lists-vs-string-concatenation-code)
 - [Combining lists with `|` vs. `++`](#combining-lists-with--vs--code)
 - [Putting into maps with `Map.put` and `put_in`](#putting-into-maps-with-mapput-and-put_in-code)
+- [Getting from maps with `Map.get` and `get_in`](#getting-from-maps-with-mapget-and-get_in-code)
 - [Splitting Large Strings](#splitting-large-strings-code)
 - [`sort` vs. `sort_by`](#sort-vs-sort_by-code)
 - [Retrieving state from ets tables vs. Gen Servers](#retrieving-state-from-ets-tables-vs-gen-servers-code)
@@ -231,6 +232,69 @@ Comparison:
 Map.put/3      677.44 K
 put_in/2       362.48 K - 1.87x slower
 put_in/3       337.47 K - 2.01x slower
+```
+
+#### Getting from maps with `Map.get` and `get_in` [code](code/general/map_get_vs_get_in.exs)
+
+```
+Operating System: macOS"
+CPU Information: Intel(R) Core(TM) i5-7360U CPU @ 2.30GHz
+Number of Available Cores: 4
+Available memory: 8 GB
+Elixir 1.8.0
+Erlang 21.2.2
+
+Benchmark suite executing with the following configuration:
+warmup: 2 s
+time: 10 s
+memory time: 0 μs
+parallel: 1
+inputs: Large (30,000 items), Medium (3,000 items), Small (30 items)
+Estimated total run time: 1.80 min
+
+
+Benchmarking Map.get/2 with input Large (30,000 items)...
+Benchmarking Map.get/2 with input Medium (3,000 items)...
+Benchmarking Map.get/2 with input Small (30 items)...
+Benchmarking Map.get/3 with input Large (30,000 items)...
+Benchmarking Map.get/3 with input Medium (3,000 items)...
+Benchmarking Map.get/3 with input Small (30 items)...
+Benchmarking get_in/2 with input Large (30,000 items)...
+Benchmarking get_in/2 with input Medium (3,000 items)...
+Benchmarking get_in/2 with input Small (30 items)...
+
+##### With input Large (30,000 items) #####
+Name                ips        average  deviation         median         99th %
+Map.get/2         37.47       26.69 ms     ±6.24%       26.42 ms       33.82 ms
+Map.get/3         37.24       26.85 ms     ±5.42%       26.65 ms       33.97 ms
+get_in/2          36.26       27.58 ms     ±9.08%       28.11 ms       35.47 ms
+
+Comparison:
+Map.get/2         37.47
+Map.get/3         37.24 - 1.01x slower
+get_in/2          36.26 - 1.03x slower
+
+##### With input Medium (3,000 items) #####
+Name                ips        average  deviation         median         99th %
+get_in/2          52.67       18.99 ms    ±12.42%       18.45 ms       24.57 ms
+Map.get/2         52.07       19.20 ms    ±12.26%       18.66 ms       26.54 ms
+Map.get/3         48.65       20.56 ms    ±12.37%       21.26 ms       27.91 ms
+
+Comparison:
+get_in/2          52.67
+Map.get/2         52.07 - 1.01x slower
+Map.get/3         48.65 - 1.08x slower
+
+##### With input Small (30 items) #####
+Name                ips        average  deviation         median         99th %
+get_in/2          51.08       19.58 ms    ±11.67%       19.36 ms       27.34 ms
+Map.get/3         46.55       21.48 ms     ±8.82%       21.62 ms       26.71 ms
+Map.get/2         46.42       21.54 ms     ±6.50%       21.42 ms       26.50 ms
+
+Comparison:
+get_in/2          51.08
+Map.get/3         46.55 - 1.10x slower
+Map.get/2         46.42 - 1.10x slower
 ```
 
 #### Splitting Large Strings [code](code/general/string_split_large_strings.exs)
